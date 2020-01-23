@@ -44,8 +44,7 @@ Parameter | Description | Default
 `gitSync.image.repository` | Docker image location for git-sync | `k8s.gcr.io/git-sync`
 `gitSync.image.tag` | Docker image tag for git-sync | `v3.1.1`
 `gitSync.image.pullPolicy` |  To pull a Docker image from Docker repository, By default skip pulling an image if it already exists | `IfNotPresent`
-`gitSync.env.name` | Environment variables to be overridden for Git repository, Branch, Location, etc.. | ` `
-`gitSync.env.value` | Environment variable Values to be overridden for Git repository, Branch, Location, etc.. | ` `
+`gitSync.env` | Environment variables to be overridden for Git repository, Branch, Location, etc.. |  `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "GIT_SYNC_REPO"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `value: "{{ .Values.initContainers.gitSync.repo }}"`
 `healthChecks.enabled` | To enable/disable healthchecks [Liveness probes and Readiness probes] for a pod | `false`
 `healthChecks.livenessProbe.httpGet.path` | Context path of the service to check the liveness of a pod | `{{ .Values.healthChecks.livenessProbePath }}`
 `healthChecks.livenessProbe.httpGet.port` | Port number of the service to check the liveness of a pod | `{{ .Values.httpPort }}`
