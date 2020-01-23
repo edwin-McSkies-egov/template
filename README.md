@@ -23,7 +23,7 @@ Parameter | Description | Default
 `httpPort` | Default port number for the service | `8080`
 `appType` | Default application type, java-spring if nothing specified | ` `
 `ingress.enabled` | To add ingress controller for the service  | `false`
-`zuul` | To add zuul configuration for the service | `false`
+`zuul` | To add zuul configuration for the service | `false` 
 `kubernetes.io/ingress.class` | Target of the ingress Controller | `nginx`
 `nginx.ingress.kubernetes.io/use-regex` | Indicates if the paths defined on an Ingress use regular expressions | `"true"`
 `nginx.ingress.kubernetes.io/app-root` | Defines the Application Root that the Controller must redirect if it's in '/' context | `"true"`
@@ -62,13 +62,13 @@ Parameter | Description | Default
 `healthChecks.readinessProbe.periodSeconds` | How often (in seconds) to perform the readiness probe |`30`
 `healthChecks.readinessProbe.successThreshold` | Minimum consecutive successes for the probe to be considered successful after having failed. | `1`
 `healthChecks.readinessProbe.failureThreshold` | When a Pod starts and the readiness probe fails, Kubernetes will try failureThreshold times before restarting pod | `5`
-`lifecycle.preStop.exec.command` | Executes the command in the pod before stopping | `- sh, -c,  - "sleep 10"`
+`lifecycle.preStop.exec.command` | Executes the command in the pod before stopping | `- sh`<br/> `- -c` <br/> `- "sleep 10"`
 `memory_limits` | To set the memory limit for the pod to 512 MB | `512Mi`
 `resources.requests.memory` | Requested memory for the pod | `{{ .Values.memory_limits | quote }}`
-`resources.requests.memory` | Memory limit for the pod on usage | `{{ .Values.memory_limits | quote }}`
-`extraEnv.java` | Addtional environment variables for Java application | `Environment variables from the reference files(dev.yml,qa.yml) [environment manifest file]`
-`jaeger` | Jaeger API tracing environment variables such as JAEGER_SERVICE_NAME, JAEGER_AGENT_HOST, JAEGER_AGENT_PORT to send traces to Jaeger Agent | `Environment variables of the agent`
-
+`resources.limits.memory` | Memory limit for the pod on usage | `{{ .Values.memory_limits | quote }}`
+`extraEnv.java` | Addtional environment variables for Java application.  | `Environment variables from the reference files(dev.yml,qa.yml) [environment manifest file]`
+`jaeger` | Jaeger API tracing environment variables such as JAEGER_SERVICE_NAME, JAEGER_AGENT_HOST, JAEGER_AGENT_PORT to send traces to Jaeger Agent | `Eg:` `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  `port: 6831` <br/> see [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
+`extraVolumes` | To add additional volumes and mounts 
 ```yaml
 ## Additional init containers
 extraInitContainers: |
