@@ -39,12 +39,12 @@ Parameter | Description | Default
 `initContainers.dbMigration.enabled` | To add DB migration as part of deployment | `false`
 `initContainers.dbMigration.image.pullPolicy` | Pulls the DB migration docker images from Docker repository | `IfNotPresent`
 `initContainers.dbMigration.image.tag` | Docker image version to pull from the Docker repository | `latest`
-`initContainers.dbMigration.env` | Environment variables to be overridden for the Flyway migration [DB_URL, FLYWAY_USER, FLYWAY_PASSWORD, etc..] | `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "FLYWAY_USER"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `valueFrom:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `secretKeyRef:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `name: db` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `key: flyway-username`
+`initContainers.dbMigration.env` | Environment variables to be overridden for the Flyway migration [DB_URL, FLYWAY_USER, FLYWAY_PASSWORD, etc..] | `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "FLYWAY_USER"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `valueFrom:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `secretKeyRef:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `name: db` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `key: flyway-username` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
 `gitSync.enabled` | To pull the latest code from the repository to the desired location | `false`
 `gitSync.image.repository` | Docker image location for git-sync | `k8s.gcr.io/git-sync`
 `gitSync.image.tag` | Docker image tag for git-sync | `v3.1.1`
 `gitSync.image.pullPolicy` |  To pull a Docker image from Docker repository, By default skip pulling an image if it already exists | `IfNotPresent`
-`gitSync.env` | Environment variables to be overridden for Git repository, Branch, Location, etc.. |  `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "GIT_SYNC_REPO"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `value: "{{ .Values.initContainers.gitSync.repo }}"`
+`gitSync.env` | Environment variables to be overridden for Git repository, Branch, Location, etc.. |  `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "GIT_SYNC_REPO"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `value: "{{ .Values.initContainers.gitSync.repo }}"` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
 `healthChecks.enabled` | To enable/disable healthchecks [Liveness probes and Readiness probes] for a pod | `false`
 `healthChecks.livenessProbe.httpGet.path` | Context path of the service to check the liveness of a pod | `{{ .Values.healthChecks.livenessProbePath }}`
 `healthChecks.livenessProbe.httpGet.port` | Port number of the service to check the liveness of a pod | `{{ .Values.httpPort }}`
@@ -64,8 +64,8 @@ Parameter | Description | Default
 `memory_limits` | To set the memory limit for the pod to 512 MB | `512Mi`
 `resources.requests.memory` | Requested memory for the pod | `{{ .Values.memory_limits \| quote }}`
 `resources.limits.memory` | Memory limit for the pod on usage | `{{ .Values.memory_limits \| quote }}`
-`extraEnv.java` | Addtional environment variables for Java application.  | `Environment variables from the reference files(dev.yml,qa.yml) [environment manifest file]`
-`jaeger` | Jaeger API tracing environment variables to send traces to Jaeger Agent | `For Eg:` <br/> `jaeger: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `port: 6831` <br/> see [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
+`extraEnv.java` | Addtional environment variables for Java application.  | `For Eg:` <br/> `java: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: SPRING_DATASOURCE_URL` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; `valueFrom:` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `configMapKeyRef:` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `name: egov-config` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `key: db-url` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
+`jaeger` | Jaeger API tracing environment variables to send traces to Jaeger Agent | `For Eg:` <br/> `jaeger: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `port: 6831` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
 `extraVolumes` | To add additional volumes and mounts 
 ```yaml
 ## Additional init containers
