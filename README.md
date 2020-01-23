@@ -1,4 +1,4 @@
-# Helm Deployment Common Chart
+# Digit Helm Deployment Common Chart
 
 To create a kubernetes helm chart for deployments, we need the key attributes [Replicas, image, init containers, etc..] 
 and its values to be passed for each service mandatorily.  
