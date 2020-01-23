@@ -66,7 +66,8 @@ Parameter | Description | Default
 `resources.limits.memory` | Memory limit for the pod on usage | `{{ .Values.memory_limits \| quote }}`
 `extraEnv.java` | Addtional environment variables for Java application.  | `For Eg:` <br/> `java: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: SPRING_DATASOURCE_URL` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; `valueFrom:` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `configMapKeyRef:` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `name: egov-config` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `key: db-url` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
 `jaeger` | Jaeger API tracing environment variables to send traces to Jaeger Agent | `For Eg:` <br/> `jaeger: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `port: 6831` <br/> For more details check [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
-`extraVolumes` | To add additional volumes and mounts 
+`extraVolumes` | To add additional volumes to the service | `For Eg:` <br/> `extraVolumes: \|` <br/> &nbsp;  &nbsp; `- name: new-volume` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; `configMap:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `name: service-new-volume`
+`extraVolumeMounts` | To mount additional volumes to the service in a desired mount path | `For Eg:` <br/> `extraVolumeMounts: \|` <br/> &nbsp;  &nbsp; `- mountPath: /opt/service-path/file.conf` <br/> &nbsp;  &nbsp; &nbsp; &nbsp; `configMap:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `name: new-volume` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; `subPath: file.conf`
 ```yaml
 ## Additional init containers
 extraInitContainers: |
