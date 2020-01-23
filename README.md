@@ -39,8 +39,7 @@ Parameter | Description | Default
 `initContainers.dbMigration.enabled` | To add DB migration as part of deployment | `false`
 `initContainers.dbMigration.image.pullPolicy` | Pulls the DB migration docker images from Docker repository | `IfNotPresent`
 `initContainers.dbMigration.image.tag` | Docker image version to pull from the Docker repository | `latest`
-`initContainers.dbMigration.env.name` | Environment variables to be overridden for the Flyway migration [DB_URL, FLYWAY_USER, FLYWAY_PASSWORD, etc..] | ` `
-`initContainers.dbMigration.env.value` | Environment variable values to be overridden for the Flyway migration [DB_URL, FLYWAY_USER, FLYWAY_PASSWORD, etc..] | ` `
+`initContainers.dbMigration.env` | Environment variables to be overridden for the Flyway migration [DB_URL, FLYWAY_USER, FLYWAY_PASSWORD, etc..] | `For Eg:` <br/> `env: \|` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `- name: "FLYWAY_USER"` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; `valueFrom:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `secretKeyRef:` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `name: db` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `key: flyway-username`
 `gitSync.enabled` | To pull the latest code from the repository to the desired location | `false`
 `gitSync.image.repository` | Docker image location for git-sync | `k8s.gcr.io/git-sync`
 `gitSync.image.tag` | Docker image tag for git-sync | `v3.1.1`
