@@ -67,7 +67,7 @@ Parameter | Description | Default
 `resources.requests.memory` | Requested memory for the pod | `{{ .Values.memory_limits \| quote }}`
 `resources.limits.memory` | Memory limit for the pod on usage | `{{ .Values.memory_limits \| quote }}`
 `extraEnv.java` | Addtional environment variables for Java application.  | `Environment variables from the reference files(dev.yml,qa.yml) [environment manifest file]`
-`jaeger` | Jaeger API tracing environment variables to send traces to Jaeger Agent | `For Eg:` <br/> `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp;  `port: 6831` <br/> see [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
+`jaeger` | Jaeger API tracing environment variables to send traces to Jaeger Agent | `For Eg:` <br/> `jaeger: \|` <br/> &nbsp;  &nbsp; `- name: JAEGER_AGENT_PORT` <br/> &nbsp;  &nbsp; &nbsp;  &nbsp; `port: 6831` <br/> see [values.yaml](https://github.com/egovernments/eGov-infraOps/blob/helm/helm/charts/common/values.yaml)
 `extraVolumes` | To add additional volumes and mounts 
 ```yaml
 ## Additional init containers
